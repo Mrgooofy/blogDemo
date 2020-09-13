@@ -1,0 +1,59 @@
+
+spring:
+    #应用名称
+    application:
+        name: springboot-demo
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/bg_demo
+        username: bg_demo
+        password: 123456
+        max-idle: 10
+        max-wait: 10000
+        min-idle: 5
+        initial-size: 5
+
+#swagger
+swagger:
+    enabled: true
+
+security:
+    basic:
+        enabled: false
+
+#mybatis配置
+mybatis:
+    # 搜索指定包别名
+    typeAliasesPackage: com.gooofy.**.domain
+    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+    mapperLocations: classpath*:mapper/**/*Mapper.xml
+    # 加载全局的配置文件
+    configLocation: classpath:mybatis/mybatis-config.xml
+
+
+#访问端口号
+server:
+    port: 8080
+#编码格式
+    tomcat:
+        uri-encoding: utf-8
+        #session生命周期
+    servlet:
+        session:
+            timeout: 30m
+
+logging:
+    level:
+        com.gooofy: debug #打印sql  com.gooofy.demo
+
+#here is the importance configs of JWT
+jwt:
+    route:
+        authentication:
+            path: /auth
+    header: Authorization
+    expiration: 604800
+    secret: zlsdsd
+
+
+

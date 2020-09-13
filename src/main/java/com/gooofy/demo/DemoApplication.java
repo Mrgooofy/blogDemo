@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Component
 @SpringBootApplication(scanBasePackages = {"com.gooofy.demo.*"})
 @MapperScan(basePackages ={"com.gooofy.demo.mapper"})
-@ServletComponentScan(basePackages = "com.gooofy.demo.security")
+// @ServletComponentScan(basePackages = "com.gooofy.demo.security")
 public class DemoApplication {
 
     public static void main(String[] args) {
