@@ -15,8 +15,6 @@ public class BgUser {
 
     private String password;
 
-    private String salt;
-
     private String nickname;
 
     private String email;

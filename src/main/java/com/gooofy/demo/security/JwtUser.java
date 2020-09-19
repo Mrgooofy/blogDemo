@@ -15,12 +15,21 @@ public class JwtUser implements UserDetails {
 
     private String username;
     private String password;
-    private Collection<? extends GrantedAuthority> authorities;
+    //private Collection<? extends GrantedAuthority> authorities;
 
-    JwtUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    /*JwtUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
         this.password = password;
         this.authorities = authorities;
+    }*/
+
+    JwtUser(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public JwtUser(String username) {
+        this.username = username;
     }
 
     @Override
@@ -28,15 +37,6 @@ public class JwtUser implements UserDetails {
         return null;
     }
 
-    @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
-    }
 
     @Override
     public boolean isAccountNonExpired() {
