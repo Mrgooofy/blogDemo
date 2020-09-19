@@ -5,13 +5,17 @@ import com.gooofy.demo.domain.BgUser;
 import com.gooofy.demo.service.BgUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
 @Api(value = "用户接口")
 @RestController
 @RequestMapping("/user")
+@PreAuthorize("permitAll()")
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -33,6 +37,7 @@ public class UserController {
     @PostMapping(value = "/login")
     @ApiOperation("登录测试")
     public String getToken(@RequestBody BgUser bgUser) throws AuthenticationException {
+        log.info("的");
         return bgUserService.login(bgUser.getUsername(), bgUser.getPassword());
     }
 
@@ -44,7 +49,7 @@ public class UserController {
      * @throws AuthenticationException 错误信息
      */
     @PostMapping(value = "/register")
-    public String register(BgUser user) throws AuthenticationException {
+    public String register(@RequestBody BgUser user) throws AuthenticationException {
         return bgUserService.register(user);
     }
 
