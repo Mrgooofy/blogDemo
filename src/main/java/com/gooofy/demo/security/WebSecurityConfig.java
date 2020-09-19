@@ -47,8 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ObjectMapper objectMapper;
 
-    //@Autowired
-    //private JwtAuthenticationTokenFilter authenticationTokenFilter;
+    @Autowired
+    private JwtAuthenticationTokenFilter authenticationTokenFilter;
 
     @Bean
     @Override
@@ -88,7 +88,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                     PrintWriter out = response.getWriter();
                     Map<String,Object> map = new HashMap<String,Object>();
-                    map.put("code",403);
+                    map.put("code",401);
                     map.put("message","认证失败");
                     out.write(objectMapper.writeValueAsString(map));
                     out.flush();
@@ -163,6 +163,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().disable();
         //开启模拟请求，比如API POST测试工具的测试，不开启时，API POST为报403错误
         http.csrf().disable();
+        // 因为我们是基于 token 进行验证的，所以 csrf 和 session 我们这里都不需要
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 
         // 添加JWT filter
@@ -171,10 +173,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 退出登录处理器
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+
+        // 将我们实现的过滤器添加进去，方法名可以很轻松的看出来是前置过滤
+        http.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+
         // 开启登录认证流程过滤器
         //http.addFilterBefore(new JwtLoginFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
         // 访问控制时登录状态检查过滤器
-        http.addFilterBefore(new JwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        //http.addFilterBefore(new JwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
 

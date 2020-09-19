@@ -1,8 +1,7 @@
 package com.gooofy.demo.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class JwtTokenUtil implements Serializable {
 
@@ -38,11 +38,25 @@ public class JwtTokenUtil implements Serializable {
      * @return 数据声明
      */
     private Claims getClaimsFromToken(String token) {
-        Claims claims;
+        Claims claims = null;
         try {
             claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        } catch (SecurityException | MalformedJwtException e) {
+            log.info("Invalid JWT signature.");
+            e.printStackTrace();
+        } catch (ExpiredJwtException e) {
+            log.info("Expired JWT token.");
+            e.printStackTrace();
+        } catch (UnsupportedJwtException e) {
+            log.info("Unsupported JWT token.");
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            log.info("JWT token compact of handler are invalid.");
+            e.printStackTrace();
         } catch (Exception e) {
             claims = null;
+            log.info("null token");
+            e.printStackTrace();
         }
         return claims;
     }
