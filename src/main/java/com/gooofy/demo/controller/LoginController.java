@@ -18,8 +18,6 @@ import java.io.IOException;
 
 /**
  * 登录控制器
- * @author Louis
- * @date Jun 29, 2019
  */
 @RestController
 public class LoginController {
