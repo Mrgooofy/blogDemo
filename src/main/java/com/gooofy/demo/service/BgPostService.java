@@ -15,4 +15,6 @@ public interface BgPostService {
     int save(BgPost bgPost);
 
     int edit(BgPost bgPost);
+
+    int delete(Integer id);
 }

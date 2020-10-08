@@ -28,4 +28,9 @@ public class BgPostServiceImpl implements BgPostService {
     public int edit(BgPost bgPost) {
         return bgPostMapper.edit(bgPost);
     }
+
+    @Override
+    public int delete(Integer id) {
+        return bgPostMapper.delete(id);
+    }
 }

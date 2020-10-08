@@ -7,6 +7,7 @@ import com.gooofy.demo.service.BgPostService;
 import com.gooofy.demo.service.BgUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.AuthenticationException;
@@ -52,5 +53,11 @@ public class PostController {
         return ApiResponse.success(bgPostService.edit(bgPost));
     }
 
+    @ApiOperation("新增文章")
+    @DeleteMapping("")
+    public ApiResponse delete(Integer id) {
+
+        return ApiResponse.success(bgPostService.delete(id));
+    }
 
 }
