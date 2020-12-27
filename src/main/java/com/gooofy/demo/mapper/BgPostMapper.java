@@ -27,4 +27,24 @@ public interface BgPostMapper {
 
     @Delete("<script> delete bg_post  where id = #{id} </script>")
     int delete(Integer id);
+
+    @Update("<script> update bg_post set readNum = readNum + 1, read_time = NOW() where id = #{id} " +
+            "</script>")
+    int addViews(BgPost bgPost);
+
+    @Update("<script> update bg_post set likeNum = likeNum + 1 where id = #{id} " +
+            "</script>")
+    int addLikes(BgPost bgPost);
+
+    @Select("<script> select * from bg_post order by read_time desc limit 20 </script>")
+    List<BgPost> recentReadlist(BgPost bgPost);
+
+    @Select("<script> select * from bg_post order by read_nums desc limit 30 </script>")
+    List<BgPost> getHotReadNumPost(BgPost bgPost);
+
+    @Select("<script> select * from bg_post order by like_nums desc limit 30 </script>")
+    List<BgPost> getPopularLikeNumPost(BgPost bgPost);
+
+    @Select("<script> select * from bg_post order by like_time desc limit 20 </script>")
+    List<BgPost> getRecentLikeList(BgPost bgPost);
 }

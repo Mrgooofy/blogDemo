@@ -20,5 +20,9 @@ public class BgPost {
     private Timestamp createTime;
     private Timestamp updateTime;
 
+    /** recent read time  */
+    private Timestamp readTime;
+    /** recent like time */
+    private Timestamp likeTime;
 
 }

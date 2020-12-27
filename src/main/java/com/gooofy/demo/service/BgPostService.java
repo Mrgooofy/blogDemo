@@ -17,4 +17,16 @@ public interface BgPostService {
     int edit(BgPost bgPost);
 
     int delete(Integer id);
+
+    int addViews(BgPost bgPost);
+
+    int addLikes(BgPost bgPost);
+
+    List<BgPost> recentReadlist(BgPost bgPost);
+
+    List<BgPost> getRecentLikeList(BgPost bgPost);
+
+    List<BgPost> getHotReadNumPost(BgPost bgPost);
+
+    List<BgPost> getPopularLikeNumPost(BgPost bgPost);
 }

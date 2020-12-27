@@ -33,4 +33,34 @@ public class BgPostServiceImpl implements BgPostService {
     public int delete(Integer id) {
         return bgPostMapper.delete(id);
     }
+
+    @Override
+    public int addViews(BgPost bgPost) {
+        return bgPostMapper.addViews(bgPost);
+    }
+
+    @Override
+    public int addLikes(BgPost bgPost) {
+        return bgPostMapper.addLikes(bgPost);
+    }
+
+    @Override
+    public List<BgPost> recentReadlist(BgPost bgPost) {
+        return bgPostMapper.recentReadlist(bgPost);
+    }
+
+    @Override
+    public List<BgPost> getRecentLikeList(BgPost bgPost) {
+        return bgPostMapper.getRecentLikeList(bgPost);
+    }
+
+    @Override
+    public List<BgPost> getHotReadNumPost(BgPost bgPost) {
+        return bgPostMapper.getHotReadNumPost(bgPost);
+    }
+
+    @Override
+    public List<BgPost> getPopularLikeNumPost(BgPost bgPost) {
+        return bgPostMapper.getPopularLikeNumPost(bgPost);
+    }
 }
