@@ -1,4 +1,21 @@
 # blogDemo
+
+it's just blog little demo
+
+now is just blog API
+
+use JWT token login
+
+add post like num count function 
+add post read num count function
+
+get post recent like list 
+get post recent read list
+get hot post list 
+get pupular post list 
+
+add post comment and get post comment list
+ 
 springboot Java blog  demo
 
 
