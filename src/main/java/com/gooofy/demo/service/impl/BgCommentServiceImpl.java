@@ -31,4 +31,9 @@ public class BgCommentServiceImpl implements BgCommentService {
     public int delete(Long id) {
         return bgCommentMapper.delete(id);
     }
+
+    @Override
+    public int addLike(BgComment bgComment) {
+        return bgCommentMapper.addLike(bgComment);
+    }
 }

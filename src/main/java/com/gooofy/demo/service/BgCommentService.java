@@ -17,4 +17,5 @@ public interface BgCommentService {
 
     int delete(Long id);
 
+    int addLike(BgComment bgComment);
 }

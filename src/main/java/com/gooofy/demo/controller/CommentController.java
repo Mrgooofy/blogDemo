@@ -41,6 +41,13 @@ public class CommentController {
         return ApiResponse.success(bgCommentService.save(bgComment));
     }
 
+    @ApiOperation("add post like")
+    @PostMapping("/add-like")
+    public ApiResponse addLike(@RequestBody BgComment bgComment) {
+
+        return ApiResponse.success(bgCommentService.addLike(bgComment));
+    }
+
     @ApiOperation("delete post comment")
     @DeleteMapping("")
     public ApiResponse delete(Long id) {

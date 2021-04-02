@@ -23,4 +23,6 @@ public interface BgCommentMapper {
     @Delete("<script> delete bg_comment  where id = #{id} </script>")
     int delete(Long id);
 
+    @Update("<script>UPDATE bg_comment SET like = like + 1 where id = #{id} </script>")
+    int addLike(BgComment bgComment);
 }

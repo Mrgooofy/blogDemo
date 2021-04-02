@@ -20,6 +20,9 @@ public class BgComment {
     /** comment author */
     private String author;
 
+    /** the commonet like nums */
+    private Long like;
+
     /** comment content */
     private String content;
     private Timestamp createTime;
